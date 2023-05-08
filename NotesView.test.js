@@ -37,7 +37,7 @@ describe('Page view', () => {
     model.addNotes('testing my notes')
     model.addNotes('testing my notes 123')
     model.addNotes('testing my notes 12345')
-    view.displayNotes(model)
+    view.displayNotes()
     expect(document.querySelectorAll('div.note').length).toBe(3);
 
   })
@@ -48,14 +48,9 @@ describe('NotesView', () => {
   it('clicks the button to add a new note', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
 
-    const model = new NotesModel()
-    const view = new View(model);
-
     const inputNote = document.querySelector('#message-input')
 
     inputNote.value = 'Doctor Appointment friday at 2:00'
-
-    expect(document.querySelector('#message-input').value).toEqual('Doctor Appointment friday at 2:00');
 
     const buttonEl = document.querySelector('#message-button')
     buttonEl.click();
@@ -64,7 +59,7 @@ describe('NotesView', () => {
     expect(document.querySelectorAll('#message-input').length).toEqual(1);
   });
 
-  it('return the right length when displayNotes is called twice', () => {
+  it('return the correct length when displayNotes is called twice', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
 
     const model = new NotesModel()
@@ -73,8 +68,7 @@ describe('NotesView', () => {
     model.addNotes('going to supermarket at 3:00')
     model.addNotes('going to the dorct at 4:00')
 
-    console.log(model)
-
+    view.displayNotes()
     view.displayNotes()
     view.displayNotes()
     

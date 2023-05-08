@@ -1,14 +1,15 @@
+const NotesClient = require('./notesCliente')
 const NotesModel = require('./notesModel')
 const View = require('./notesView')
 
 const model = new NotesModel()
+const cliente = new NotesClient()
 
-// model.addNotes('test123')
-// model.addNotes('adding more notes')
-// model.addNotes('testing notes 1234567')
 
-const view = new View(model)
-view.displayNotes()
+const view = new View(model, cliente)
+//view.displayNotes()
+
+view.displayNotesFromApi();
 
 //console.log(model.getNotes());
 //console.log('teste');
